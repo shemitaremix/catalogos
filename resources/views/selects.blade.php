@@ -74,6 +74,9 @@
         <select id="asentamiento" style="margin-top: 10%;">
             <option value="">Seleccione una opcion</option>
         </select>
+        <select id="municipios" style="margin-top: 10%;">
+            <option value="">Seleccione una opcion</option>
+        </select>
         <br>
 
     </form>
@@ -118,6 +121,11 @@
                     let codigos = response.codigos;
                     console.log(codigos);
                     // -- Vaciar select
+                    $('#municipios').empty();
+                    // -- Agregar opciones
+                    for(let i = 0; i < codigos.length; i++){
+                        $('#municipios').append('<option value="'+codigos[i].asentamiento+'">'+codigos[i].asentamiento+'</option>');
+                    }
                 }
             });
         });
