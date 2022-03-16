@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('catalogo', function (Blueprint $table) {
             $table->id();
             $table->biginteger('codigo');
+            $table->string('asentamiento');
             $table->string('tipo_asenta');
             $table->string('municipio');
             $table->string('estado');
