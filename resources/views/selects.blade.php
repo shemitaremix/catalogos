@@ -7,10 +7,10 @@
     <title>Document</title>
 
     <style type="text/css">
-    body{background:#59ABE3;margin:0}
+    body{background:#68ecc5;margin:0}
     .form{width:340px;
-        height:440px;
-        background:#e6e6e6;
+        height:780px;
+        background:#fffefe;
         border-radius:8px;
         box-shadow:0 0 40px -10px #000;
         margin:calc(50vh - 220px) auto;
@@ -62,21 +62,37 @@
         border-radius:6px;
         font-size:13px;
         box-shadow:10px 10px 40px -14px #000}
-    span{margin:0 5px 0 15px}
+    span{margin:0 5px 0 20px}
     </style>
 </head>
 <
 <body>
     <form class="form">
-        <h2>CodigosPostales</h2>
+        <h1>CodigosPostales</h1>
         <input type="text" name="codigo" id="search">
         <input type="button" id="action-button" value="BUSCAR">
-        <h3>Asentamiento(s)</h3>
-        <select id="asentamiento" style="margin-top: 10%;">
+        <h2>Asentamiento(s)</h2>
+        <select id="asentamiento" style="margin-top: 8%;">
             <option value="">Seleccione una opcion</option>
         </select>
-        <h3>Municipio(s)</h3>
-        <select id="municipio" style="margin-top: 10%;">
+        <h2>ID</h2>
+        <select id="id" style="margin-top: 8%;">
+            <option value="">Seleccione una opcion</option>
+        </select>
+        <h2>Ciudad</h2>
+        <select id="municipio" style="margin-top: 8%;">
+            <option value="">Seleccione una opcion</option>
+        </select>
+        <h2>Estado</h2>
+        <select id="estado" style="margin-top: 8%;">
+            <option value="">Seleccione una opcion</option>
+        </select>
+        <h2>Municipio</h2>
+        <select id="municipios" style="margin-top: 8%;">
+            <option value="">Seleccione una opcion</option>
+        </select>
+        <h2>Tipo Asentamiento</h2>
+        <select id="tipo" style="margin-top: 8%;">
             <option value="">Seleccione una opcion</option>
         </select>
         <br>
@@ -127,6 +143,30 @@
                     // -- Agregar opciones
                     for(let i = 0; i < codigos.length; i++){
                         $('#municipio').append('<option value="'+codigos[i].ciudad+'">'+codigos[i].ciudad+'</option>');
+                    }
+
+                    $('#municipios').empty();
+                    // -- Agregar opciones
+                    for(let i = 0; i < codigos.length; i++){
+                        $('#municipios').append('<option value="'+codigos[i].municipio+'">'+codigos[i].municipio+'</option>');
+                    }
+
+                    $('#tipo').empty();
+                    // -- Agregar opciones
+                    for(let i = 0; i < codigos.length; i++){
+                        $('#tipo').append('<option value="'+codigos[i].tipo_asenta+'">'+codigos[i].tipo_asenta+'</option>');
+                    }
+
+                    $('#estado').empty();
+                    // -- Agregar opciones
+                    for(let i = 0; i < codigos.length; i++){
+                        $('#estado').append('<option value="'+codigos[i].estado+'">'+codigos[i].estado+'</option>');
+                    }
+
+                    $('#id').empty();
+                    // -- Agregar opciones
+                    for(let i = 0; i < codigos.length; i++){
+                        $('#id').append('<option value="'+codigos[i].Id+'">'+codigos[i].Id+'</option>');
                     }
                 }
             });
