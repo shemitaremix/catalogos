@@ -71,10 +71,12 @@
         <h2>CodigosPostales</h2>
         <input type="text" name="codigo" id="search">
         <input type="button" id="action-button" value="BUSCAR">
+        <h3>Asentamiento(s)</h3>
         <select id="asentamiento" style="margin-top: 10%;">
             <option value="">Seleccione una opcion</option>
         </select>
-        <select id="municipios" style="margin-top: 10%;">
+        <h3>Municipio(s)</h3>
+        <select id="municipio" style="margin-top: 10%;">
             <option value="">Seleccione una opcion</option>
         </select>
         <br>
@@ -121,10 +123,10 @@
                     let codigos = response.codigos;
                     console.log(codigos);
                     // -- Vaciar select
-                    $('#municipios').empty();
+                    $('#municipio').empty();
                     // -- Agregar opciones
                     for(let i = 0; i < codigos.length; i++){
-                        $('#municipios').append('<option value="'+codigos[i].asentamiento+'">'+codigos[i].asentamiento+'</option>');
+                        $('#municipio').append('<option value="'+codigos[i].ciudad+'">'+codigos[i].ciudad+'</option>');
                     }
                 }
             });
