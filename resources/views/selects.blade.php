@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <style type="text/css"> 
+    <style type="text/css">
     body{background:#59ABE3;margin:0}
     .form{width:340px;
         height:440px;
@@ -69,10 +69,12 @@
 <body>
     <form class="form">
         <h2>CodigosPostales</h2>
-        <input id="search"> <button id="action-button"> BUSCAR </button>
+        <input type="text" name="codigo" id="search">
+        <input type="button" id="action-button" value="BUSCAR">
+        <select id="asentamiento" style="margin-top: 10%;">
+            <option value="">Seleccione una opcion</option>
+        </select>
         <br>
-        <select class="form-select" aria-label="Default select example" id="select">
-            <br>
 
     </form>
 </body>
@@ -81,21 +83,44 @@
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
 <script type="text/javascript">
-    $("#search").on('keypress', function() {
-        var myText = $(this).val();
-     });
 
-     $("#action-button").on('click', function() {
-            var myText = $(this).val();
+
+    $(document).ready(function(){
+        $('#action-button').click(function(){
+            let codigo = $('#search').val();
+            // -- Ajax a show
             $.ajax({
-                url: 'index',
-                type: "get",
-                dataType: "json",
-                data: {_token: "{{ csrf_token() }}", text: myText },
-                success: function (response) {
-                    $("ps");
+                url: '{{route('codigos.show')}}'+'/'+codigo,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    let codigos = response.codigos;
+                    // -- Vaciar select
+                    $('#asentamiento').empty();
+                    // -- Agregar opciones
+                    for(let i = 0; i < codigos.length; i++){
+                        $('#asentamiento').append('<option value="'+codigos[i].asentamiento+'">'+codigos[i].asentamiento+'</option>');
+                    }
                 }
             });
-         });
+        });
+
+        $("#asentamiento").change(function(){
+            let codigo = $('#search').val();
+            let asentamiento = $('#asentamiento').val();
+            alert(asentamiento);
+            //-- Ajax a show
+            $.ajax({
+                url: '{{route('codigos.asentamientos')}}'+'/'+codigo+'/'+asentamiento,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    let codigos = response.codigos;
+                    console.log(codigos);
+                    // -- Vaciar select
+                }
+            });
+        });
+    });
 </script>
 </html>

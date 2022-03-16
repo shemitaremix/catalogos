@@ -12,14 +12,18 @@ class catalogosController extends Controller
         return view('selects',['catalogo' => $catalogo]);
     }
 
-    public function buscar(Request $request){
-   
-      $text = $request->text;
-      // Haces tu consulta para eloquent en este caso para el ejemplo
-      $data = Catalogo::where('municipio', 'LIKE', '%'.$text.'%')->get();
-      // resultados es una vista que crearas para reemplazar el contenido de tu tabla. 
-      $view = view('selects', compact('data'))->render();
-      return response()->json($view);
-   
+    public function show($codigo){
+
+        $codigos = Catalogo::where('codigo',$codigo)->get();
+
+        return response()->json(['codigos' => $codigos]);
+
+    }
+
+    public function asentamientos($codigo, $asentamiento)
+    {
+        $codigos = Catalogo::where('codigo',$codigo)->where('asentamiento',$asentamiento)->get();
+
+        return response()->json(['codigos' => $codigos]);
     }
 }

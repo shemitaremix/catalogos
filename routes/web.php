@@ -15,3 +15,5 @@ use App\Http\Controllers\catalogosController;
 */
 
 Route::get('/',[catalogosController::class, 'index'])->name('inicio');
+Route::get('/codigos/codigo/{codigo?}',[catalogosController::class, 'show'])->name('codigos.show');
+Route::get('/codigos/asentamiento/{codigo?}/{asentamiento?}',[catalogosController::class, 'asentamientos'])->name('codigos.asentamientos');
